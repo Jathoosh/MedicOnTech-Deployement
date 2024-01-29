@@ -35,6 +35,12 @@ router.use((req, res, next) => {
   next();
 });
 
+router.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Medicontech API is up and running!",
+  });
+});
+
 //PARTIE OBTENTION INFO SELON CONNEXION
 
 router.post('/login', (req, res) => {

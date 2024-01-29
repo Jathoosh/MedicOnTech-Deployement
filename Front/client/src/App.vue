@@ -122,7 +122,7 @@ export default {
     },
     async FCMethod()
     {
-      window.location.href = "http://localhost:3000/login";
+      console.error("FCMethod not implemented");
     },
     async loadDataFcCallback()
     {
