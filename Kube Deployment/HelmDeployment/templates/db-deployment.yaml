@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mot-db
+  labels:
+    name: mot-db
+spec:
+  selector:
+    matchLabels:
+      app: mot-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mot-db
+    spec:
+      containers:
+        - name: mot-db-container
+          image: jathoosh/mot-db:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mot-db
+  labels:
+    app: mot-db
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3306
+  selector:
+    app: mot-db

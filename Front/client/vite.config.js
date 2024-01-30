@@ -11,6 +11,7 @@ export default defineConfig({
     vue(),
   ],
   server: {
+    host: true,
     port: process.env.PORT || 8080,
   },
   resolve: {

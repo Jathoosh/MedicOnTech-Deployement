@@ -12,8 +12,7 @@ const app = express()
 app.use(cors(
   {
     origin: [
-      (process.env.CLEINT_HOST || 'localhost') + ':' + (process.env.CLEINT_PORT || 5173)
-
+      'http://localhost',
     ],
     credentials: true
   }

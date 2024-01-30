@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mot-frontend
+  labels:
+    name: mot-frontend
+spec:
+  selector:
+    matchLabels:
+      app: mot-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mot-frontend
+    spec:
+      # containers:
+      #     - name: frontend
+      #       image: jathoosh/nginx_custom_index:latest
+      #       ports:
+      #         - name: http
+      #           containerPort: 80
+      #       imagePullPolicy: Always
+      containers:
+        - name: mot-frontend-container
+          image: jathoosh/mot-frontend:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+          env:
+            - name: SERVER_HOST
+              value: localhost
+            - name: SERVER_PORT
+              value: "3000"
+            - name: PORT
+              value: "8080"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mot-frontend
+  labels:
+    app: mot-frontend
+spec:
+  type: NodePort
+  ports:
+    - name: vite-port
+      port: 8000
+      targetPort: 8080
+  selector:
+    app: mot-frontend
